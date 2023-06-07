@@ -1,13 +1,21 @@
 
 import XCTest
+import AVFoundation
+import Foundation
 
 class sampleapp_ios_swiftUITests: XCTestCase {
-    let app = XCUIApplication()
+   let app = XCUIApplication()
     override func setUp() {
         super.setUp()
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
+        // to play sound
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: "This is an App Center audio test with real device.")
+        speechSynthesizer.speak(utterance)
+        
         app.launch()
+ 
     }
 
     override func tearDown() {
@@ -21,4 +29,6 @@ class sampleapp_ios_swiftUITests: XCTestCase {
         let fatalErrorButtonQuery = app.buttons.matching(identifier: "fatalErrorButton")
         XCTAssert(window.frame.contains(fatalErrorButtonQuery.accessibilityFrame))
     }
+    
+
 }
